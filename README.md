@@ -22,7 +22,8 @@ will change to represent the click count. For example, after two clicks,
 the value will be `2 clicks`. 
 
 # Structure of the Test 
-The test is setup to use JUnit 5 and the Hamcrest matchers. Each test is 
+The test class is found in [src/test/java](src/test/java). 
+The class is setup to use JUnit 5 and the Hamcrest matchers. Each test is 
 marked with the `@Test` annotation. 
 
 There is a method at the top of the class that is used to start the 
