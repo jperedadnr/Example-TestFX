@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,9 +29,7 @@ public class ExampleGridScene extends Scene {
         // this button will report the number of times it has been clicked.
         Button secondButton = new Button("0 clicks");
         secondButton.setId("second-button");
-        secondButton.setOnAction(
-                actionEvent -> secondButton.setText( ++numberOfClicks + " clicks")
-        );
+        secondButton.setOnAction(actionEvent -> secondButton.setText( ++numberOfClicks + " clicks"));
 
         grid.add(secondButton, 0, 1);
 
