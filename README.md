@@ -46,14 +46,14 @@ Clone and run this sample, with JDK 17+ and JavaFX headless SDK:
 
 ```
 git clone https://github.com/jperedadnr/Example-TestFX.git
-git checkout headless
 cd Example-TestFX
+git checkout headless
 mvn -Psdk test
 ```
 and now headlessly:
 
 ````
-export _JAVA_OPTIONS=-Dtestfx.robot=glass -Dtestfx.headless=true
+export _JAVA_OPTIONS="-Dtestfx.robot=glass -Dtestfx.headless=true"
 mvn -Psdk test
 ```
 
