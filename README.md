@@ -12,7 +12,7 @@ Build
 
 The headless platform is under public development in the OpenJFX sandbox repository: https://github.com/openjdk/jfx-sandbox/tree/johanvos-headless
 
-A most advanced version can be found here: https://github.com/jperedadnr/jfx-sandbox/tree/1-headless
+A more advanced version can be found here: https://github.com/jperedadnr/jfx-sandbox/tree/1-headless
 
 You can fork it and build it yourself, or just take the SDK from these links:
 
@@ -29,15 +29,43 @@ TestFX https://github.com/TestFX/TestFX has been forked to run with JDK 17+ and 
 
 You can see the changes here: https://github.com/jperedadnr/TestFX/tree/headless
 
-You can fork it and build it yourself: 
+You can add a snapshot of the TestFX artifacts to your pom:
+
 ```
- export _JAVA_OPTIONS=-Dtestfx.robot=glass -Dtestfx.headless=true
- .gradlew build publishToMavenLocal
- ``` 
+<repositories>
+        <repository>
+            <id>nexus</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/public-snapshots</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        ...
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.18-gluon-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18-gluon-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        ...
+    </dependencies>
+```
+
+Or if you want, you can fork it and build it yourself:
+
+```
+export _JAVA_OPTIONS=-Dtestfx.robot=glass -Dtestfx.headless=true
+.gradlew build publishToMavenLocal
+``` 
 
 Note that it will also run and pass headlessly all the unit tests (500+).
 
-Or you can grab the artifacts with version 4.0.18-gluon-SNAPSHOT from https://nexus.gluonhq.com/nexus/content/repositories/public-snapshots
 
 Run
 ---
@@ -50,10 +78,18 @@ cd Example-TestFX
 git checkout headless
 mvn -Psdk test
 ```
+
 and now headlessly:
 
-````
+```
 export _JAVA_OPTIONS="-Dtestfx.robot=glass -Dtestfx.headless=true"
 mvn -Psdk test
 ```
+
+<h4>Note about the WebViewSnapshotTest</h4> 
+
+This test opens headlessly a WebView node, loads a given URL and sends to a printer its content.
+Therefore, a printer is needed. The test will pick the default printer found in your system. 
+
+For your convenience, add a PDF printer and set it as default.
 
