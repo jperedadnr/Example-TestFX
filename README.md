@@ -85,11 +85,3 @@ and now headlessly:
 export _JAVA_OPTIONS="-Dtestfx.robot=glass -Dtestfx.headless=true"
 mvn -Psdk test
 ```
-
-<h4>Note about the WebViewSnapshotTest</h4> 
-
-This test opens headlessly a WebView node, loads a given URL and sends to a printer its content.
-Therefore, a printer is needed. The test will pick the default printer found in your system. 
-
-For your convenience, add a PDF printer and set it as default.
-
